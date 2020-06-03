@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MiTiendita</string>
+    <string name="txt_Usuario">Usuario</string>
+    <string name="txt_contrasena">Contraseña</string>
+    <string name="txt_acceder">Ingresar</string>
+    <string name="txt_registrarse">Registrate</string>
+    <string name="helper_campo_requerido">Campo Requerido</string>
+    <string name="helper_min">Minimo 1</string>
+    <string name="txt_opcion">Selecciona una opcion:</string>
+    <string name="title_activity_detalle_producto">DetalleProducto</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_lista_clientes">ListaClientes</string>
+    <string name="title_activity_lista_ventas">ListaVentas</string>
+</resources>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/containterVenta"
+        android:clickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtProducto"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingStart="16dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:text="Producto"
+            android:maxLines="1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtCantidad"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="5"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtTotalVenta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="100.00"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:drawableStart="@drawable/ic_price"/>
+
+    </LinearLayout>
+</LinearLayout>

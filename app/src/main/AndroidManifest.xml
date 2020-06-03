@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.ray.mitiendita">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_icono"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_icono"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".Vistas.DetalleSaldoCliente"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Vistas.CrearVenta"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Vistas.ListaVentas"
+            android:label="@string/title_activity_lista_ventas"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Vistas.DetalleCliente"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Vistas.AgregarCliente"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Vistas.ListaClientes"
+            android:label="@string/title_activity_lista_clientes"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Vistas.DetalleProducto"
+            android:label="@string/title_activity_detalle_producto"
+            android:parentActivityName=".Vistas.Productos"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ray.mitiendita.Vistas.Productos" />
+        </activity>
+        <activity
+            android:name=".Vistas.AgregarProducto"
+            android:theme="@style/ActivitiesTheme" />
+        <activity
+            android:name=".Vistas.Productos"
+            android:label="Productos"
+            android:theme="@style/ActivitiesTheme" />
+        <activity
+            android:name=".Vistas.RegistroUsuario"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivitiesTheme" />
+        <activity
+            android:name=".Vistas.RegistroInicial"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivitiesTheme" />
+        <activity
+            android:name=".Vistas.Dashboard"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivitiesTheme" />
+        <activity
+            android:name=".Vistas.OnBoardingScreen"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivitiesTheme" />
+        <activity
+            android:name=".Vistas.Login"
+            android:screenOrientation="portrait"
+            android:theme="@style/LoginTheme" />
+        <activity
+            android:name=".Vistas.Splash"
+            android:screenOrientation="portrait"
+            android:theme="@style/LoginTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

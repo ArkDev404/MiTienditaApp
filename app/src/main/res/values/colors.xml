@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="colorAccent">#FFC107</color>
+    <color name="colorControlActivated">#FFF</color>
+
+    <color name="BotonLogin">#2196F3</color>
+    <color name="BotonRegistro">#4CAF50</color>
+    <color name="BotonRegistroRipple">#33691E</color>
+
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#fff</color>
+    <color name="blanco_transparente">#88ffffff</color>
+
+</resources>

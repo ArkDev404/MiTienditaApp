@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+        <ImageView
+            android:id="@+id/icono_configuracion"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_settings"
+            android:layout_marginEnd="10dp"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+            <TextView
+                android:id="@+id/txtConfig"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Configuracion"
+                android:textSize="16dp"/>
+
+            <TextView
+                android:id="@+id/txtConfigDescrip"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="Descripcion de la configuracion"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

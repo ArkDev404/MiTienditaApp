@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/containterVenta"
+        android:clickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="80dp"
+            android:layout_width="80dp"
+            android:paddingEnd="5dp"
+            android:src="@drawable/ic_ventas"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtProducto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Folio No."
+            android:maxLines="1"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtNoVenta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="12"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:maxLines="1"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtTotalVenta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="23-08-95"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    </LinearLayout>
+</LinearLayout>
