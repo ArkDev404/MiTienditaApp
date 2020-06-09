@@ -11,18 +11,16 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
             app:title="@string/app_name"
+            app:titleTextColor="@android:color/white"
             app:subtitle="Crear Venta"
-            app:subtitleTextColor="@color/md_white_1000"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
+            app:subtitleTextColor="@color/md_white_1000">
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -155,6 +153,7 @@
             android:padding="8dp"
             android:textSize="16sp"
             android:text="Agregar"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:textAllCaps="false"
             android:layout_gravity="end"
             app:icon="@drawable/ic_carrito_compra"
@@ -162,6 +161,10 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        android:background="@color/color_guideline"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerProductosVendidos"
@@ -170,6 +173,10 @@
         android:padding="5dp"
         tools:listitem="@layout/item_lista_productos"/>
 
+    <View
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        android:background="@color/color_guideline"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -201,7 +208,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_price"
-                    android:text="200.00"
+                    android:text="0.00"
                     style="@style/TextAppearance.MaterialComponents.Headline6"/>
 
         </LinearLayout>
@@ -212,6 +219,7 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_gravity="end"
+        android:textColor="@android:color/white"
         android:text="Pagar"
         android:layout_margin="10dp"
         android:textAllCaps="false" />

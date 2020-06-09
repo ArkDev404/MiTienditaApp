@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,6 +48,7 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Vi
         final Producto producto = productos.get(position);
         holder.setListener(producto,listener);
         holder.txtNombreProd.setText(producto.getNombreProducto());
+        holder.txtCantidadProd.setText(String.valueOf(producto.getExistencias()));
         holder.txtPrecioProd.setText(String.valueOf(producto.getPrecio()));
 
         if (producto.getFotoProducto() != null) {
@@ -100,8 +102,10 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Vi
         MaterialTextView txtNombreProd;
         @BindView(R.id.txtPrecioProd)
         MaterialTextView txtPrecioProd;
+        @BindView(R.id.txtCantidadProd)
+        MaterialTextView txtCantidadProd;
         @BindView(R.id.containterProducto)
-        RelativeLayout containterProducto;
+        ConstraintLayout containterProducto;
 
         public ViewHolder(View itemView) {
             super(itemView);

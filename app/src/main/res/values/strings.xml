@@ -11,4 +11,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_lista_clientes">ListaClientes</string>
     <string name="title_activity_lista_ventas">ListaVentas</string>
+    <string name="title_activity_lista_gastos">ListaGastos</string>
+    <string name="title_activity_agregar_gasto">AgregarGasto</string>
 </resources>

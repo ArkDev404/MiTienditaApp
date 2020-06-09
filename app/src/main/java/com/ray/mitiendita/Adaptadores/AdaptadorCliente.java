@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,6 +46,7 @@ public class AdaptadorCliente extends RecyclerView.Adapter<AdaptadorCliente.View
         final Cliente cliente = clientes.get(position);
         holder.setListener(cliente, listener);
         holder.txtNombreCliente.setText(cliente.getNombre());
+        holder.txtSaldo.setText(String.valueOf(cliente.getSaldo()));
 
         if (cliente.getSexo().equals("Hombre")) {
             holder.fotoCliente.setImageDrawable(ContextCompat.
@@ -79,8 +81,10 @@ public class AdaptadorCliente extends RecyclerView.Adapter<AdaptadorCliente.View
 
         @BindView(R.id.txtNombreCliente)
         MaterialTextView txtNombreCliente;
+        @BindView(R.id.txtSaldo)
+        MaterialTextView txtSaldo;
         @BindView(R.id.containterCliente)
-        RelativeLayout containterCliente;
+        ConstraintLayout containterCliente;
         @BindView(R.id.fotoCliente)
         CircleImageView fotoCliente;
 

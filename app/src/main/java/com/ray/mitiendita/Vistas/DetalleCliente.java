@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -56,6 +57,7 @@ public class DetalleCliente extends AppCompatActivity {
     private void recibirDatoCliente(Intent intent) {
         getCliente(intent.getIntExtra(Cliente.ID, 0));
 
+        int id = cliente.getIdCliente();
         etNombreCliente.setText(cliente.getNombre());
         etApellidosCliente.setText(cliente.getApellidos());
         etSexo.setText(cliente.getSexo());
@@ -113,7 +115,7 @@ public class DetalleCliente extends AppCompatActivity {
     @OnClick(R.id.btn_detalleS)
     public void detalleSaldo() {
         Intent intent = new Intent(this, DetalleSaldoCliente.class);
-        //intent.putExtra("ID","");
+        intent.putExtra(Cliente.ID,cliente.getIdCliente());
         startActivity(intent);
     }
 }

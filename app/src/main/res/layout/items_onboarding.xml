@@ -22,15 +22,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textColor="@color/colorPrimary"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
 
     <TextView
         android:id="@+id/textDescripcion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textColor="#4f4f4f"
-        android:textSize="18sp" />
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
 </LinearLayout>

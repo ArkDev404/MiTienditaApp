@@ -15,17 +15,25 @@
         android:id="@+id/recyclerCategorias"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:visibility="gone"
         android:scrollbars="horizontal"
+        tools:listitem="@layout/item_categoria"
+        android:scrollbarSize="0dp"
+        tools:itemCount="1"
         android:orientation="horizontal"/>
+
+    <View
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        android:background="@color/color_guideline"
+        android:layout_marginTop="5dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerProductos"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:padding="@dimen/recyclerPadding"
-        tools:listitem="@layout/item_producto"
-        android:visibility="visible"/>
+        android:paddingBottom="88dp"
+        android:clipToPadding="false"
+        tools:listitem="@layout/item_producto"/>
 
     <LinearLayout
         android:id="@+id/vistaVacia"
@@ -47,10 +55,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@android:color/black"
             android:text="No hay productos disponibles!"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
     </LinearLayout>
 
 

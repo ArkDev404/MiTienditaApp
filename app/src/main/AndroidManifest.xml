@@ -14,68 +14,58 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_icono"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/MyTheme.DayNight"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Vistas.CorteAlDia"></activity>
         <activity
-            android:name=".Vistas.DetalleSaldoCliente"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:name=".Vistas.AgregarGasto"
+            android:label="@string/title_activity_agregar_gasto"
+            android:theme="@style/MyTheme.DayNight.NoActionBar" />
+        <activity android:name=".Vistas.Estadisticas" />
         <activity
-            android:name=".Vistas.CrearVenta"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".Vistas.ListaGastos"
+            android:label="@string/title_activity_lista_gastos"
+            android:theme="@style/MyTheme.DayNight.NoActionBar" />
+        <activity android:name=".Vistas.DetalleSaldoCliente" />
+        <activity android:name=".Vistas.CrearVenta" />
         <activity
             android:name=".Vistas.ListaVentas"
-            android:label="@string/title_activity_lista_ventas"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Vistas.DetalleCliente"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Vistas.AgregarCliente"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_lista_ventas" />
+        <activity android:name=".Vistas.DetalleCliente" />
+        <activity android:name=".Vistas.AgregarCliente" />
         <activity
             android:name=".Vistas.ListaClientes"
-            android:label="@string/title_activity_lista_clientes"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_lista_clientes" />
         <activity
             android:name=".Vistas.DetalleProducto"
             android:label="@string/title_activity_detalle_producto"
-            android:parentActivityName=".Vistas.Productos"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".Vistas.Productos">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.ray.mitiendita.Vistas.Productos" />
         </activity>
-        <activity
-            android:name=".Vistas.AgregarProducto"
-            android:theme="@style/ActivitiesTheme" />
+        <activity android:name=".Vistas.AgregarProducto" />
         <activity
             android:name=".Vistas.Productos"
-            android:label="Productos"
-            android:theme="@style/ActivitiesTheme" />
+            android:label="Productos" />
         <activity
             android:name=".Vistas.RegistroUsuario"
-            android:screenOrientation="portrait"
-            android:theme="@style/ActivitiesTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Vistas.RegistroInicial"
-            android:screenOrientation="portrait"
-            android:theme="@style/ActivitiesTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Vistas.Dashboard"
-            android:screenOrientation="portrait"
-            android:theme="@style/ActivitiesTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Vistas.OnBoardingScreen"
-            android:screenOrientation="portrait"
-            android:theme="@style/ActivitiesTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Vistas.Login"
-            android:screenOrientation="portrait"
-            android:theme="@style/LoginTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Vistas.Splash"
-            android:screenOrientation="portrait"
-            android:theme="@style/LoginTheme">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -10,13 +10,11 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_width="match_parent">
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:subtitle="Inicio"
@@ -25,13 +23,13 @@
             app:titleTextColor="@android:color/white">
 
             <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switch_nightMode"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="Modo Oscuro  "
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_gravity="end"
-                android:visibility="invisible"/>
+                android:textColor="@android:color/white"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_gravity="end"/>
 
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textview.MaterialTextView;
@@ -44,7 +45,7 @@ public class AdaptadorListaP extends RecyclerView.Adapter<AdaptadorListaP.ViewHo
         final DetalleVentas detalleVenta = detalleVentas.get(position);
         holder.setListener(detalleVenta,listener);
         holder.txtProducto.setText(detalleVenta.getProductoVendido());
-        holder.txtCantidad.setText(String.valueOf(detalleVenta.getCantidad()));
+        holder.txtCantidad.setText(String.valueOf(detalleVenta.getCantidad()) + " piezas");
         holder.txtTotalVenta.setText(String.valueOf(detalleVenta.getPrecio()*detalleVenta.getCantidad()));
     }
 
@@ -81,7 +82,7 @@ public class AdaptadorListaP extends RecyclerView.Adapter<AdaptadorListaP.ViewHo
         @BindView(R.id.txtTotalVenta)
         MaterialTextView txtTotalVenta;
         @BindView(R.id.containterVenta)
-        LinearLayout containterVenta;
+        ConstraintLayout containterVenta;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

@@ -316,7 +316,8 @@ public class CrearVenta extends AppCompatActivity implements OnItemProductListCl
                             ventas.setIdFolio(Integer.valueOf(tvFolio.getText().toString().trim()));
                             ventas.setFechaVenta(txtFecha.getText().toString().trim());
                             ventas.setEstaPagada(isPagado);
-                            ventas.setIdCliente(id);
+                            ventas.setClienteID(id);
+                            ventas.setTotalVenta(Float.valueOf(tvTotal.getText().toString().trim()));
                             ventas.insert();
                             finish();
                         } catch (Exception e) {

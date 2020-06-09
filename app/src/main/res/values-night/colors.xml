@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blanco_transparente">#88ffffff</color>
+
+    <!--Colores de Material Theming-->
+    <color name="color_Primary">#2196F3</color>
+    <color name="color_Primary_Variant">#1976D2</color>
+    <color name="color_Secondary">#587AFF</color>
+    <color name="color_Secondary_Variant">#2C57FC</color>
+
+    <color name="color_Background">#212121</color>
+    <color name="color_Surface">#000000</color>
+    <color name="color_error">#EF5350</color>
+
+    <color name="color_on_Primary">#000000</color>
+    <color name="color_on_Secondary">#000000</color>
+    <color name="color_on_Background">#ffffff</color>
+    <color name="color_on_Surface">#ffffff</color>
+    <color name="color_on_error">#000000</color>
+
+    <color name="color_guideline">#1EFFFFFF</color>
+    <color name="collapseToolbar">#212121</color>
+    <color name="color_configuration_item">#FFFFFF</color>
+</resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Vistas.ListaGastos"
+    android:orientation="vertical"
+    tools:showIn="@layout/activity_lista_gastos">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerGastos"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:paddingBottom="88dp"
+        android:clipToPadding="false"
+        tools:listitem="@layout/item_gasto"
+        android:visibility="visible"/>
+
+    <LinearLayout
+        android:id="@+id/vistaVacia"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="15dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="No hay Gastos"
+            android:src="@drawable/ic_transaction"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="No se han registrado gastos aun!"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+    </LinearLayout>
+
+
+</LinearLayout>

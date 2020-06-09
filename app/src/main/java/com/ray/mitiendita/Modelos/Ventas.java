@@ -15,7 +15,10 @@ public class Ventas extends BaseModel {
     @Column
     private String EstaPagada;
     @Column //FK Cliente
-    private int idCliente;
+    private int ClienteID;
+    @Column
+    private float totalVenta;
+
 
     public Ventas() {
     }
@@ -40,12 +43,20 @@ public class Ventas extends BaseModel {
         return EstaPagada;
     }
 
-    public int getIdCliente() {
-        return idCliente;
+    public float getTotalVenta() {
+        return totalVenta;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setTotalVenta(float totalVenta) {
+        this.totalVenta = totalVenta;
+    }
+
+    public int getClienteID() {
+        return ClienteID;
+    }
+
+    public void setClienteID(int clienteID) {
+        ClienteID = clienteID;
     }
 
     public void setEstaPagada(String estaPagada) {

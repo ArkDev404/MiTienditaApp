@@ -19,7 +19,6 @@
             android:id="@+id/listConfig"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="10dp"
             tools:listitem="@layout/item_producto"
             android:visibility="gone"/>
 
@@ -38,8 +37,7 @@
                 android:layout_width="match_parent"
                 android:text="Bienvenido a MiTiendita"
                 android:gravity="center"
-                android:textColor="@android:color/black"
-                android:textSize="24sp"/>
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
         </RelativeLayout>
 
         <GridLayout
@@ -77,9 +75,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Productos"
-                        android:textSize="18sp"
-                        android:textColor="@android:color/black"
-                        android:layout_marginTop="12dp"/>
+                        android:layout_marginTop="12dp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -109,9 +106,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Clientes"
-                        android:textSize="18sp"
-                        android:textColor="@android:color/black"
-                        android:layout_marginTop="12dp"/>
+                        android:layout_marginTop="12dp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -141,14 +137,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Ventas"
-                        android:textSize="18sp"
-                        android:textColor="@android:color/black"
-                        android:layout_marginTop="12dp"/>
+                        android:layout_marginTop="12dp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardGastos"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_columnWeight="1"
@@ -172,14 +168,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Gastos"
-                        android:textSize="18sp"
-                        android:textColor="@android:color/black"
-                        android:layout_marginTop="12dp"/>
+                        android:layout_marginTop="12dp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardCorte"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_columnWeight="1"
@@ -203,19 +199,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Corte al Dia"
-                        android:textSize="18sp"
-                        android:textColor="@android:color/black"
-                        android:layout_marginTop="12dp"/>
+                        android:layout_marginTop="12dp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardEstadisticas"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
                 android:elevation="6dp"
+                android:focusable="true"
                 app:cardCornerRadius="12dp"
                 android:layout_margin="12dp">
 
@@ -234,9 +231,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Estadisticas"
-                        android:textSize="18sp"
-                        android:textColor="@android:color/black"
-                        android:layout_marginTop="12dp"/>
+                        android:layout_marginTop="12dp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>

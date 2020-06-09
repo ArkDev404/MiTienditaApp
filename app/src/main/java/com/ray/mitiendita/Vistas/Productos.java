@@ -18,9 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
+import com.ray.mitiendita.Adaptadores.AdaptadorCategorias;
 import com.ray.mitiendita.Adaptadores.AdaptadorProducto;
 import com.ray.mitiendita.Listeners.OnItemClickListener;
-import com.ray.mitiendita.Modelos.DetalleVentas;
+import com.ray.mitiendita.Modelos.Categorias;
 import com.ray.mitiendita.Modelos.Producto;
 import com.ray.mitiendita.R;
 import com.thecode.aestheticdialogs.AestheticDialog;
@@ -44,8 +45,11 @@ public class Productos extends AppCompatActivity implements OnItemClickListener 
     LinearLayout vistaVacia;
     @BindView(R.id.fab)
     FloatingActionButton fab;
+    @BindView(R.id.recyclerCategorias)
+    RecyclerView recyclerCategorias;
 
     private AdaptadorProducto adaptador;
+    private AdaptadorCategorias adaptadorCategorias;
 
 
     @Override
@@ -59,18 +63,34 @@ public class Productos extends AppCompatActivity implements OnItemClickListener 
         configAdaptador();
         configRecyclerView();
 
-        //generarProductos();
+        generarCategorias();
+
+    }
+
+    private void generarCategorias() {
+        int[] fotoCategorias = {R.drawable.ic_fruit,R.drawable.ic_drink,R.drawable.ic_quimico,
+                R.drawable.ic_medicine,R.drawable.ic_milk,R.drawable.ic_carnes,R.drawable.ic_candy,
+                R.drawable.ic_others};
+        String[] nombreCategorias = {"Frutas","Bebidas","Quimicos","Medicina","Lacteos","Carnes","Dulces","Otros"};
+
+        for (int i = 0; i < 8; i++) {
+            Categorias categorias = new Categorias(fotoCategorias[i],nombreCategorias[i]);
+            adaptadorCategorias.agregar(categorias);
+        }
 
     }
 
     private void configRecyclerView() {
         recyclerProductos.setLayoutManager(new LinearLayoutManager(this));
         recyclerProductos.setAdapter(adaptador);
+
+        recyclerCategorias.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        recyclerCategorias.setAdapter(adaptadorCategorias);
     }
 
     private void configAdaptador() {
-        adaptador = new AdaptadorProducto(new
-                ArrayList<Producto>(), this);
+        adaptador = new AdaptadorProducto(new ArrayList<>(), this);
+        adaptadorCategorias = new AdaptadorCategorias(new ArrayList<Categorias>());
     }
 
 
@@ -93,7 +113,6 @@ public class Productos extends AppCompatActivity implements OnItemClickListener 
     }
 
     /**
-     *
      * @return se regresa el resultado de la consulta
      */
     private List<Producto> getUsuariosDB() {
@@ -110,7 +129,9 @@ public class Productos extends AppCompatActivity implements OnItemClickListener 
         startActivity(intent);
     }
 
-    /**Implementacion de metodos en el adaptador*/
+    /**
+     * Implementacion de metodos en el adaptador
+     */
     @Override
     public void onItemClick(Producto producto) {
         Intent intent = new Intent(this, DetalleProducto.class);
@@ -121,7 +142,7 @@ public class Productos extends AppCompatActivity implements OnItemClickListener 
     @Override
     public void ontItemLongClick(Producto producto) {
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        if (vibrator!=null) {
+        if (vibrator != null) {
             vibrator.vibrate(600);
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(this)
@@ -131,12 +152,12 @@ public class Productos extends AppCompatActivity implements OnItemClickListener 
                     try {
                         producto.delete();
                         adaptador.remover(producto);
-                    } catch (Exception e){
-                        Log.e("Excepcion: ",e.getMessage());
+                    } catch (Exception e) {
+                        Log.e("Excepcion: ", e.getMessage());
                     }
-                    AestheticDialog.showToaster(Productos.this,"Eliminado",
-                           "Se ha eliminado el producto exitosamente",
-                              AestheticDialog.INFO);
+                    AestheticDialog.showToaster(Productos.this, "Eliminado",
+                            "Se ha eliminado el producto exitosamente",
+                            AestheticDialog.INFO);
                     validarVistas();
                 })
                 .setNegativeButton("Cancelar", null);

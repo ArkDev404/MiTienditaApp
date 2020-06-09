@@ -12,11 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:text="Bienvenido a MiTiendita"
-        android:textSize="24dp"
         android:layout_marginTop="50dp"
-        android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"/>
 
     <ImageView android:layout_height="100dp"
         android:layout_width="100dp"
@@ -27,25 +26,25 @@
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         android:text="Ingresa el nombre de tu Negocio"
-        android:textColor="@android:color/black"
         android:layout_gravity="center"
         android:textAlignment="center"
         android:textStyle="bold"
-        android:textSize="20dp"
         android:layout_marginTop="50dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:hint="Negocio"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        android:layout_margin="10dp"
+        app:startIconDrawable="@drawable/ic_shop"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtNombreNegocio"
+            android:inputType="textPersonName"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_margin="15dp"
+            android:hint="Negocio"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -55,6 +54,7 @@
         android:layout_marginTop="80dp"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
         android:text="Siguiente"
         android:textAllCaps="false"
         android:layout_gravity="center"/>

@@ -1,51 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/containterVenta"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:padding="10dp"
-    android:layout_height="wrap_content">
+    android:layout_height="88dp"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingTop="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:id="@+id/containterVenta"
-        android:clickable="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_height="80dp"
-            android:layout_width="80dp"
-            android:paddingEnd="5dp"
-            android:src="@drawable/ic_ventas"/>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/txtProducto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Folio No."
-            android:maxLines="1"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
+            android:id="@+id/logoVenta"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_venta"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txtNoVenta"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:hint="12"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="20dp"
-            android:maxLines="1"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Venta No. 1"
+            android:textAppearance="@style/itemLarge"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/logoVenta"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txtTotalVenta"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:hint="23-08-95"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:layout_height="0dp"
+            android:drawableStart="@drawable/ic_precio"
+            android:gravity="center"
+            android:hint="$ 150.00 MXM"
+            android:textAppearance="@style/itemLarge"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/txtNoVenta"
+            app:layout_constraintHorizontal_bias="0.064"
+            app:layout_constraintStart_toEndOf="@+id/logoVenta"
+            app:layout_constraintTop_toBottomOf="@id/txtNoVenta"
+            app:layout_constraintVertical_bias="0.5"/>
 
-    </LinearLayout>
-</LinearLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtFechaGasto"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:drawableStart="@drawable/ic_calendar"
+            android:gravity="center"
+            android:hint="08-06.2020"
+            android:textAppearance="@style/itemLarge"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtTotalVenta"
+            app:layout_constraintTop_toBottomOf="@+id/txtNoVenta" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/color_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/txtNoVenta"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

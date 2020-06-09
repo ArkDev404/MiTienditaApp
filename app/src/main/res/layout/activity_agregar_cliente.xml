@@ -10,24 +10,23 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
             app:title="@string/app_name"
+            app:titleTextColor="@android:color/white"
             app:subtitle="Agregar Cliente"
-            app:subtitleTextColor="@color/md_white_1000"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
+            app:subtitleTextColor="@android:color/white">
 
-            <com.google.android.material.button.MaterialButton
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/btnGuardar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
+                android:paddingEnd="16dp"
                 android:drawableEnd="@drawable/ic_save"/>
 
         </androidx.appcompat.widget.Toolbar>
@@ -46,9 +45,8 @@
             android:layout_width="match_parent"
             android:textAlignment="center"
             android:layout_marginBottom="30sp"
-            android:textColor="@android:color/black"
             android:text="Agregue los datos que a continuación se le solicitan"
-            style="@style/TextAppearance.MaterialComponents.Headline5"/>
+            style="@style/TextAppearance.MaterialComponents.Headline6"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"

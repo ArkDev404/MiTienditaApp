@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.ray.mitiendita.Modelos.ConfigItems;
 import com.ray.mitiendita.R;
 
@@ -46,8 +47,8 @@ public class ConfigAdaptador extends BaseAdapter {
         vista = inflate.inflate(R.layout.items_configuracion,null);
 
         ImageView imagen =vista.findViewById(R.id.icono_configuracion);
-        TextView titulo = vista.findViewById(R.id.txtConfig);
-        TextView descripcion = vista.findViewById(R.id.txtConfigDescrip);
+        MaterialTextView titulo = vista.findViewById(R.id.txtConfig);
+        MaterialTextView descripcion = vista.findViewById(R.id.txtConfigDescrip);
 
         titulo.setText(configItems.get(position).getTitulo());
         descripcion.setText(configItems.get(position).getSubtitulo());

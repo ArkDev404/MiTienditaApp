@@ -4,9 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textview.MaterialTextView;
@@ -40,10 +40,11 @@ public class AdaptadorVentas extends RecyclerView.Adapter<AdaptadorVentas.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final Ventas ventas =  venta.get(position);
-        holder.setListener(ventas,listener);
-        holder.txtNoVenta.setText(String.valueOf(ventas.getIdFolio()));
-        holder.txtTotalVenta.setText(ventas.getFechaVenta());
+        final Ventas ventas = venta.get(position);
+        holder.setListener(ventas, listener);
+        holder.txtNoVenta.setText("Venta No. " + ventas.getIdFolio());
+        holder.txtTotalVenta.setText(String.valueOf(ventas.getTotalVenta()));
+        holder.txtFechaGasto.setText(String.valueOf(ventas.getFechaVenta()));
 
     }
 
@@ -65,8 +66,10 @@ public class AdaptadorVentas extends RecyclerView.Adapter<AdaptadorVentas.ViewHo
         MaterialTextView txtNoVenta;
         @BindView(R.id.txtTotalVenta)
         MaterialTextView txtTotalVenta;
+        @BindView(R.id.txtFechaGasto)
+        MaterialTextView txtFechaGasto;
         @BindView(R.id.containterVenta)
-        LinearLayout containterVenta;
+        ConstraintLayout containterVenta;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -8,7 +8,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 @Table(database = AppDB.class)
 public class Gastos extends BaseModel {
 
-    @PrimaryKey
+    @PrimaryKey(autoincrement = true)
     private int idGasto;
     @Column
     private String motivoGasto;
@@ -16,6 +16,8 @@ public class Gastos extends BaseModel {
     private float monto;
     @Column
     private String fechaGasto;
+    @Column
+    private String comprobanteGasto;
 
     public Gastos() {
     }
@@ -50,5 +52,13 @@ public class Gastos extends BaseModel {
 
     public void setFechaGasto(String fechaGasto) {
         this.fechaGasto = fechaGasto;
+    }
+
+    public String getComprobanteGasto() {
+        return comprobanteGasto;
+    }
+
+    public void setComprobanteGasto(String comprobanteGasto) {
+        this.comprobanteGasto = comprobanteGasto;
     }
 }

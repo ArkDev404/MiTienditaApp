@@ -18,6 +18,8 @@ public class Producto extends BaseModel {
     @Column
     private String NombreProducto;
     @Column
+    private String Categoria;
+    @Column
     private String Descripcion;
     @Column
     private float Precio;
@@ -76,6 +78,14 @@ public class Producto extends BaseModel {
 
     public void setNombreProducto(String nombreProducto) {
         NombreProducto = nombreProducto;
+    }
+
+    public String getCategoria() {
+        return Categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        Categoria = categoria;
     }
 
     public String getDescripcion() {

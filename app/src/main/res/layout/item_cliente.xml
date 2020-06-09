@@ -1,36 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/containterCliente"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardUseCompatPadding="true">
-
-    <RelativeLayout
-        android:id="@+id/containterCliente"
-        android:clickable="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    android:layout_height="80dp"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingTop="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/fotoCliente"
-            android:layout_height="80dp"
-            android:layout_width="80dp"
+            android:layout_height="55dp"
+            android:layout_width="55dp"
+            android:layout_marginStart="16dp"
             android:src="@drawable/ic_cliente"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txtNombreCliente"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Nombre"
             android:maxLines="1"
             android:textStyle="bold"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_margin="@dimen/padd_10"
-            android:layout_toEndOf="@id/fotoCliente"
-            android:layout_centerVertical="true"/>
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:textAppearance="@style/itemLarge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/fotoCliente"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    </RelativeLayout>
-</androidx.cardview.widget.CardView>
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txtSaldo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_deuda"
+        android:gravity="center"
+        android:hint="Saldo"
+        android:textAppearance="@style/itemLarge"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/txtNombreCliente"
+        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintStart_toEndOf="@+id/fotoCliente"
+        app:layout_constraintTop_toBottomOf="@id/txtNombreCliente"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/color_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/txtNombreCliente"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

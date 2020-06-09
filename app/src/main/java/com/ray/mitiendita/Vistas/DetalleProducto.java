@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -19,6 +21,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
@@ -53,6 +56,18 @@ public class DetalleProducto extends AppCompatActivity {
     FloatingActionButton fab;
     @BindView(R.id.toolbar_layout)
     CollapsingToolbarLayout toolbarLayout;
+    @BindView(R.id.til_CodigoBarras)
+    TextInputLayout tilCodigoBarras;
+    @BindView(R.id.til_NombreProducto)
+    TextInputLayout tilNombreProducto;
+    @BindView(R.id.til_Precio)
+    TextInputLayout tilPrecio;
+    @BindView(R.id.til_Existencias)
+    TextInputLayout tilExistencias;
+    @BindView(R.id.til_Descripcion)
+    TextInputLayout tilDescripcion;
+    @BindView(R.id.etCategoria)
+    AutoCompleteTextView etCategoria;
 
     private Producto producto;
     private static final int REQUEST_CAMERA_PICKER = 21;
@@ -66,6 +81,7 @@ public class DetalleProducto extends AppCompatActivity {
         setSupportActionBar(toolbar);
         recibirDatoProducto(getIntent());
         configTituloToolbar();
+        cargarCombobox();
         configImageView(producto.getFotoProducto());
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -73,6 +89,8 @@ public class DetalleProducto extends AppCompatActivity {
 
     private void configTituloToolbar() {
         toolbarLayout.setTitle(producto.getNombreProducto());
+        toolbarLayout.setExpandedTitleColor(getColor(R.color.md_white_1000));
+        toolbarLayout.setCollapsedTitleTextColor(getColor(R.color.md_white_1000));
     }
 
     private void recibirDatoProducto(Intent intent) {
@@ -86,6 +104,13 @@ public class DetalleProducto extends AppCompatActivity {
 
     }
 
+    private void cargarCombobox() {
+        String[] categorias = new String[]{"Basico","Verduras","Refrescos",
+                "Jugos","Carnes","Higiene","Lacteos","Limpieza","Otros"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_sexo, categorias);
+        etCategoria.setAdapter(adapter);
+
+    }
 
     private void configImageView(String fotoUrl) {
         if (fotoUrl != null) {
@@ -104,7 +129,6 @@ public class DetalleProducto extends AppCompatActivity {
     }
 
     private boolean validacionCampos() {
-
         boolean validado = true;
 
         String codigo = etCodigoBarras.getText().toString().trim();
@@ -114,13 +138,19 @@ public class DetalleProducto extends AppCompatActivity {
         String descripcion = etDescripcion.getText().toString().trim();
 
         if (codigo.isEmpty()) {
-            etCodigoBarras.setError("Debes rellenar este campo");
+            tilCodigoBarras.setError("Debes rellenar este campo");
+        } else {
+            tilCodigoBarras.setErrorEnabled(false);
         }
         if (nombre.isEmpty()) {
-            etNombreProducto.setError("Debes rellenar este campo");
+            tilNombreProducto.setError("Debes rellenar este campo");
+        } else {
+            tilNombreProducto.setErrorEnabled(false);
         }
         if (descripcion.isEmpty()) {
-            etDescripcion.setError("Debes rellenar este campo");
+            tilDescripcion.setError("Debes rellenar este campo");
+        } else {
+            tilDescripcion.setErrorEnabled(false);
         }
 
         if (!codigo.isEmpty() && !nombre.isEmpty() && !precio.isEmpty() &&
@@ -131,11 +161,11 @@ public class DetalleProducto extends AppCompatActivity {
         }
 
         if (precio.isEmpty() || Float.valueOf(etPrecio.getText().toString().trim()) < 0) {
-            etPrecio.setError("El campo debe ser mayor a 0");
+            tilPrecio.setError("El campo debe ser mayor a 0");
             validado = false;
         }
         if (existencia.isEmpty() || Integer.valueOf(etExistencias.getText().toString().trim()) < 0) {
-            etExistencias.setError("El campo debe ser mayor a 0");
+            tilExistencias.setError("El campo debe ser mayor a 0");
             validado = false;
         }
 
@@ -212,29 +242,30 @@ public class DetalleProducto extends AppCompatActivity {
 
     @OnClick(R.id.fab)
     public void habilitarOActualizar() {
-        if (editable){
-        if (validacionCampos()){
-            producto.setCodigoBarras(etCodigoBarras.getText().toString().trim());
-            producto.setNombreProducto(etNombreProducto.getText().toString().trim());
-            producto.setDescripcion(etDescripcion.getText().toString().trim());
-            producto.setPrecio(Float.valueOf(etPrecio.getText().toString().trim()));
-            producto.setExistencias(Integer.valueOf(etExistencias.getText().toString().trim()));
-            producto.setFotoProducto(producto.getFotoProducto());
-            try {
-                producto.update();
-                configTituloToolbar();
-                AestheticDialog.showToaster(this, "Actualización",
-                        "Se actualizo el producto exitosamente",AestheticDialog.INFO);
-            } catch (Exception e){
-                Log.e("SQL: ", e.getMessage());
+        if (editable) {
+            if (validacionCampos()) {
+                producto.setCodigoBarras(etCodigoBarras.getText().toString().trim());
+                producto.setNombreProducto(etNombreProducto.getText().toString().trim());
+                producto.setCategoria(etCategoria.getText().toString().trim());
+                producto.setDescripcion(etDescripcion.getText().toString().trim());
+                producto.setPrecio(Float.valueOf(etPrecio.getText().toString().trim()));
+                producto.setExistencias(Integer.valueOf(etExistencias.getText().toString().trim()));
+                producto.setFotoProducto(producto.getFotoProducto());
+                try {
+                    producto.update();
+                    configTituloToolbar();
+                    AestheticDialog.showRainbow(this, "Actualización",
+                            "Se actualizo el producto exitosamente", AestheticDialog.INFO);
+                } catch (Exception e) {
+                    Log.e("SQL: ", e.getMessage());
+                }
             }
-            }
-            fab.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_edit));
+            fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_edit));
             habilitarCampos(false);
             editable = false;
         } else {
             editable = true;
-            fab.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_save));
+            fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_save));
             habilitarCampos(true);
         }
     }

@@ -10,18 +10,16 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
             app:title="@string/app_name"
+            app:titleTextColor="@android:color/white"
             app:subtitle="Saldo Cliente"
-            app:subtitleTextColor="@color/md_white_1000"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
+            app:subtitleTextColor="@color/md_white_1000">
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -37,16 +35,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Saldo Deudor"
-            android:textSize="18sp"
-            android:textColor="@android:color/black"/>
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_deuda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_price"
             android:text="0.00"
-            android:textSize="18sp"
-            android:textColor="@android:color/black"/>
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
 
         <LinearLayout
             android:layout_height="wrap_content"
@@ -57,16 +53,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Abonos"
-                android:textSize="18sp"
-                android:textColor="@android:color/black"/>
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_abonos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_price"
                 android:text="0.00"
-                android:textSize="18sp"
-                android:textColor="@android:color/black"/>
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
 
         </LinearLayout>
 
@@ -103,11 +97,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_price"
-                android:text="abonar" />
+                android:text="abonar"
+                android:textColor="@android:color/white"/>
         </LinearLayout>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerVentasCliente"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_venta"
@@ -135,10 +131,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@android:color/black"
             android:text="No tiene adeudos actualmente!"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
 
     </LinearLayout>
 

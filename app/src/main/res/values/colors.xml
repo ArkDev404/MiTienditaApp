@@ -6,10 +6,29 @@
     <color name="colorControlActivated">#FFF</color>
 
     <color name="BotonLogin">#2196F3</color>
-    <color name="BotonRegistro">#4CAF50</color>
-    <color name="BotonRegistroRipple">#33691E</color>
 
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#fff</color>
+
     <color name="blanco_transparente">#88ffffff</color>
+
+    <!--Colores de Material Theming-->
+    <color name="color_Primary">#2196F3</color>
+    <color name="color_Primary_Variant">#1976D2</color>
+    <color name="color_Secondary">#2196F3</color>
+    <color name="color_Secondary_Variant">#1976D2</color>
+
+    <color name="color_Background">#f5f5f5</color>
+    <color name="color_Surface">#ffffff</color>
+    <color name="color_error">#d50000</color>
+
+    <color name="color_on_Primary">#000000</color>
+    <color name="color_on_Secondary">#ffffff</color>
+    <color name="color_on_Background">#000000</color>
+    <color name="color_on_Surface">#000000</color>
+    <color name="color_on_error">#ffffff</color>
+
+    <color name="color_guideline">#1E000000</color>
+    <color name="collapseToolbar">#2196F3</color>
+    <color name="color_configuration_item">#000000</color>
 
 </resources>

@@ -7,12 +7,15 @@ import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.ray.mitiendita.Adaptadores.ConfigAdaptador;
 import com.ray.mitiendita.Modelos.ConfigItems;
 import com.ray.mitiendita.R;
@@ -25,7 +28,6 @@ import butterknife.OnClick;
 
 
 public class Dashboard extends AppCompatActivity {
-
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -43,6 +45,8 @@ public class Dashboard extends AppCompatActivity {
     GridLayout gridLayout;
 
     ArrayList<ConfigItems> configItems;
+    @BindView(R.id.switch_nightMode)
+    SwitchMaterial switchNightMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,16 @@ public class Dashboard extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
+//        habilitarModoOscuro();
+        switchNightMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                Toast.makeText(getApplicationContext(), "Modo Oscuro Activado", Toast.LENGTH_SHORT).show();
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                Toast.makeText(getApplicationContext(), "Modo Oscuro Desactivado", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         Navigator.setOnNavigationItemSelectedListener(item -> {
 
@@ -131,8 +145,26 @@ public class Dashboard extends AppCompatActivity {
     }
 
     @OnClick(R.id.cardVentas)
-    public void onViewClicked() {
+    public void onStartVentas() {
         Intent intent = new Intent(this, ListaVentas.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.cardEstadisticas)
+    public void onStartEstadisticas() {
+        Intent intent = new Intent(this, Estadisticas.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.cardGastos)
+    public void onStartGastos() {
+        Intent intent = new Intent(this, ListaGastos.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.cardCorte)
+    public void onViewClicked() {
+        Intent intent = new Intent(this, CorteAlDia.class);
         startActivity(intent);
     }
 }
