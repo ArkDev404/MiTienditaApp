@@ -94,6 +94,12 @@ public class CrearVenta extends AppCompatActivity implements OnItemProductListCl
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        rellenarComboCliente();
+    }
+
     /**
      * Este metodo permite rellenar con una consulta el AutoCompleteTextView
      */
@@ -217,12 +223,10 @@ public class CrearVenta extends AppCompatActivity implements OnItemProductListCl
                 Toast.makeText(this, "Operación cancelada", Toast.LENGTH_SHORT).show();
             } else {
                 try {
-                    // Todo: Variable provisional
-                    double factorUtilidad = 1.1;
                     String codigoEscaneado = intentResult.getContents();
                     getInfoProducto(codigoEscaneado);
                     etNombreProducto.setText(producto.getNombreProducto());
-                    etPrecio.setText(String.valueOf(producto.getPrecio() * factorUtilidad));
+                    etPrecio.setText(String.valueOf(producto.getPrecio()));
                 } catch (Exception e) {
                     Toast.makeText(this, "No hay productos con este Codigo", Toast.LENGTH_LONG).show();
                 }
@@ -253,13 +257,46 @@ public class CrearVenta extends AppCompatActivity implements OnItemProductListCl
         setTotalVenta();
     }
 
+    /**
+     * Con este metodo agregamos los articulos al carrito y ademas validamos que tengamos
+     * suficientes articulos en el inventario para poderlos vender...
+     * Si no contamos con los articulos no se ejecutar la operación
+     */
+
     private void agregarArticulo() {
         try {
-            detalleVentas.setFolioVenta(Integer.valueOf(tvFolio.getText().toString().trim()));
-            detalleVentas.setProductoVendido(etNombreProducto.getText().toString().trim());
-            detalleVentas.setPrecio(Float.valueOf(etPrecio.getText().toString().trim()));
-            detalleVentas.setCantidad(Integer.valueOf(etCantidad.getText().toString().trim()));
-            detalleVentas.insert();
+
+            // Afectación Inventario de Productos
+            producto = SQLite
+                    .select()
+                    .from(Producto.class)
+                    .where(Producto_Table.NombreProducto.is(etNombreProducto.getText().toString().trim()))
+                    .querySingle();
+
+            int existenciasProducto = producto.getExistencias();
+
+            int productosAVender = Integer.valueOf(etCantidad.getText().toString().trim());
+
+            if (existenciasProducto >= productosAVender) {
+                int nuevaExistencia = existenciasProducto - productosAVender;
+
+                producto.setExistencias(nuevaExistencia);
+                producto.update();
+
+                //Detalles de Ventas
+                detalleVentas.setFolioVenta(Integer.valueOf(tvFolio.getText().toString().trim()));
+                detalleVentas.setProductoVendido(etNombreProducto.getText().toString().trim());
+                detalleVentas.setPrecio(Float.valueOf(etPrecio.getText().toString().trim()));
+                detalleVentas.setCantidad(Integer.valueOf(etCantidad.getText().toString().trim()));
+                detalleVentas.insert();
+
+                etNombreProducto.setText("");
+                etPrecio.setText("");
+                etCantidad.setText("");
+            } else {
+                Toast.makeText(this, "Articulos insuficientes para vender", Toast.LENGTH_SHORT).show();
+            }
+
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -295,7 +332,7 @@ public class CrearVenta extends AppCompatActivity implements OnItemProductListCl
     public void pagarVenta() {
         int items = adaptador.getItemCount();
         if (items == 0) {
-           Toast.makeText(this, "No hay productos registrados", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No hay productos registrados", Toast.LENGTH_SHORT).show();
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this)
                     .setTitle("Venta")
@@ -308,10 +345,20 @@ public class CrearVenta extends AppCompatActivity implements OnItemProductListCl
                                     where(Cliente_Table.Nombre.is(etCliente.getText().toString())).
                                     querySingle();
 
+
                             int id = cliente.getIdCliente();
+
+                            float nuevoSaldo = cliente.getSaldo() + Float.valueOf(tvTotal.getText().toString());
+
                             String isPagado;
 
-                            if (switchPago.isChecked()){ isPagado = "Si"; } else { isPagado = "No"; }
+                            if (switchPago.isChecked()) {
+                                isPagado = "Si";
+                            } else {
+                                isPagado = "No";
+                                cliente.setSaldo(nuevoSaldo);
+                                cliente.update();
+                            }
 
                             ventas.setIdFolio(Integer.valueOf(tvFolio.getText().toString().trim()));
                             ventas.setFechaVenta(txtFecha.getText().toString().trim());
@@ -330,10 +377,9 @@ public class CrearVenta extends AppCompatActivity implements OnItemProductListCl
 
     }
 
-    /*Metodos implementados*/
+    /*Metodos implementados del Listener*/
     @Override
     public void onItemClick(DetalleVentas detalleVentas) {
-
     }
 
     @Override
@@ -341,4 +387,9 @@ public class CrearVenta extends AppCompatActivity implements OnItemProductListCl
 
     }
 
+    @OnClick(R.id.btn_nuevoCliente)
+    public void onViewClicked() {
+        Intent intent = new Intent(this,AgregarCliente.class);
+        startActivity(intent);
+    }
 }

@@ -16,6 +16,7 @@ import com.ray.mitiendita.Listeners.OnItemClienteClickListener;
 import com.ray.mitiendita.Modelos.Cliente;
 import com.ray.mitiendita.R;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import butterknife.BindView;
@@ -27,6 +28,8 @@ public class AdaptadorCliente extends RecyclerView.Adapter<AdaptadorCliente.View
     private List<Cliente> clientes;
     private OnItemClienteClickListener listener;
     private Context context;
+
+    DecimalFormat format = new DecimalFormat("#,###.00");
 
     public AdaptadorCliente(List<Cliente> clientes, OnItemClienteClickListener listener) {
         this.clientes = clientes;
@@ -45,8 +48,8 @@ public class AdaptadorCliente extends RecyclerView.Adapter<AdaptadorCliente.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Cliente cliente = clientes.get(position);
         holder.setListener(cliente, listener);
-        holder.txtNombreCliente.setText(cliente.getNombre());
-        holder.txtSaldo.setText(String.valueOf(cliente.getSaldo()));
+        holder.txtNombreCliente.setText(cliente.getNombreCompleto());
+        holder.txtSaldo.setText(format.format(cliente.getSaldo()));
 
         if (cliente.getSexo().equals("Hombre")) {
             holder.fotoCliente.setImageDrawable(ContextCompat.

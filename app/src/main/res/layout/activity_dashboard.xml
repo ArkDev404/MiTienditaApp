@@ -29,17 +29,18 @@
                 android:text="Modo Oscuro  "
                 android:textColor="@android:color/white"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                android:layout_gravity="end"/>
+                android:layout_gravity="end" />
 
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_dashboard" />
+    <include
+        layout="@layout/content_dashboard" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/Navigator"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_gravity="bottom"
         style="@style/Widget.MaterialComponents.BottomNavigationView"
         app:menu="@menu/menu"/>

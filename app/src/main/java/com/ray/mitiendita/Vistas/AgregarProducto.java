@@ -2,9 +2,17 @@ package com.ray.mitiendita.Vistas;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -17,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -27,6 +36,9 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.ray.mitiendita.Modelos.Producto;
 import com.ray.mitiendita.R;
+import com.thecode.aestheticdialogs.AestheticDialog;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,6 +48,14 @@ import butterknife.OnClick;
 public class AgregarProducto extends AppCompatActivity {
 
     private static final int REQUEST_CAMERA_PICKER = 21;
+    private static final int COD_FOTO = 22 ;
+
+
+    private final String CARPETA_RAIZ = "MiTiendita/";
+    private final String RUTA_IMAGEN = CARPETA_RAIZ+"Productos";
+
+    String path;
+
     Producto producto = new Producto();
 
     // Butterknife injections
@@ -74,7 +94,6 @@ public class AgregarProducto extends AppCompatActivity {
         ButterKnife.bind(this);
         solicitarPermisosCamara();
         cargarCombobox();
-        // Todo: Evento provisional para comenzar con el escaneo del codigo de barras
         etCodigoBarras.setOnTouchListener((v, event) -> {
             leerCodigoBarras();
             return false;
@@ -84,7 +103,7 @@ public class AgregarProducto extends AppCompatActivity {
 
     private void cargarCombobox() {
         String[] categorias = new String[]{"Frutas","Bebidas","Quimicos","Medicina","Lacteos",
-                                            "Carnes","Otros"};
+                "Carnes","Dulces","Otros"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_sexo, categorias);
         etCategoria.setAdapter(adapter);
 
@@ -95,7 +114,7 @@ public class AgregarProducto extends AppCompatActivity {
      */
     private void solicitarPermisosCamara() {
         ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.CAMERA}, PackageManager.PERMISSION_GRANTED);
+                new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
     }
 
     /**
@@ -118,8 +137,11 @@ public class AgregarProducto extends AppCompatActivity {
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK) {
-            if (requestCode == REQUEST_CAMERA_PICKER) {
+            if (requestCode == REQUEST_CAMERA_PICKER ) {
                 guardarFotoProducto(data.getDataString());
+            }
+            if (requestCode == COD_FOTO){
+                configImageView(path);
             }
         }
 
@@ -137,7 +159,6 @@ public class AgregarProducto extends AppCompatActivity {
     private void guardarFotoProducto(String dataString) {
         producto.setFotoProducto(dataString);
         configImageView(dataString);
-        Toast.makeText(this, "Imagen agregada", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -165,10 +186,49 @@ public class AgregarProducto extends AppCompatActivity {
     public void onImageOperations(View view) {
         switch (view.getId()) {
             case R.id.imgFoto:
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/jpeg");
-                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
-                startActivityForResult(Intent.createChooser(intent, getString(R.string.txt_opcion)), REQUEST_CAMERA_PICKER);
+                final CharSequence[] opciones = {"Tomar Foto","Cargar Imagen"};
+                AlertDialog.Builder builderOpciones = new AlertDialog.Builder(this)
+                        .setTitle("Selecciona una opcion")
+                        .setItems(opciones, (dialog, which) -> {
+                            if (opciones[which].equals("Tomar Foto")){
+                                File fileImagen = new File (Environment.getExternalStorageDirectory(), RUTA_IMAGEN);
+                                boolean isCreada = fileImagen.exists();
+                                String nombre="";
+
+                                if (isCreada == false) {
+                                    isCreada=fileImagen.mkdirs();
+                                }
+                                if (isCreada == true) {
+                                    nombre = (System.currentTimeMillis()/1000)+".jpg";
+                                }
+
+                                path = Environment.getExternalStorageDirectory()+
+                                        File.separator+RUTA_IMAGEN+File.separator+nombre;
+
+                                File imagen = new File(path);
+
+                                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.N)
+                                {
+                                    String authorities=getApplicationContext().getPackageName()+".provider";
+                                    Uri imageUri= FileProvider.getUriForFile(getApplicationContext(),authorities,imagen);
+                                    intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                                }else
+                                {
+                                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imagen));
+                                }
+                                startActivityForResult(intent,COD_FOTO);
+                            } else if (opciones[which].equals("Cargar Imagen")){
+                                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                                intent.setType("image/jpeg");
+                                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+                                startActivityForResult(Intent.createChooser(intent,
+                                        getString(R.string.txt_opcion)), REQUEST_CAMERA_PICKER);
+                            }
+                        });
+                builderOpciones.show();
+
                 break;
             case R.id.delete_img:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this)
@@ -196,8 +256,7 @@ public class AgregarProducto extends AppCompatActivity {
             producto.setFotoProducto(producto.getFotoProducto());
 
             try {
-                Log.e("SQL: ", "Inserción Exitosa");
-                Toast.makeText(this, producto.getFotoProducto(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Insercion exitosa", Toast.LENGTH_SHORT).show();
                 producto.insert();
                 finish();
             } catch (Exception e) {

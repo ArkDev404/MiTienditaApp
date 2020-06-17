@@ -11,9 +11,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.ray.mitiendita.Adaptadores.AdaptadorVentas;
 import com.ray.mitiendita.Listeners.OnItemVentaClickListener;
+import com.ray.mitiendita.Modelos.AppPreferences;
+import com.ray.mitiendita.Modelos.AppPreferences_Table;
 import com.ray.mitiendita.Modelos.DetalleVentas;
 import com.ray.mitiendita.Modelos.Ventas;
 import com.ray.mitiendita.R;
@@ -33,6 +37,7 @@ public class ListaVentas extends AppCompatActivity implements OnItemVentaClickLi
     LinearLayout vistaVacia;
 
     private AdaptadorVentas adaptador;
+    private AppPreferences appPreferences = new AppPreferences();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,13 @@ public class ListaVentas extends AppCompatActivity implements OnItemVentaClickLi
         ButterKnife.bind(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        List<AppPreferences> appPreferencesList =
+                SQLite.select().from(AppPreferences.class).queryList();
+
+        if (appPreferencesList.get(0).getIsVenta()==0){
+            crearShowCase();
+        }
 
         configAdaptador();
         configRecyclerView();
@@ -54,7 +66,37 @@ public class ListaVentas extends AppCompatActivity implements OnItemVentaClickLi
             validarVistas();
     }
 
+    private void crearShowCase() {
 
+        TapTargetView.showFor(this, TapTarget.forView(findViewById(R.id.fab),
+                "Crear Venta","Desde este boton puedes crear ventas de tus productos")
+                        .outerCircleColor(R.color.color_Primary)
+                        .outerCircleAlpha(0.8f)
+                        .targetCircleColor(R.color.md_white_1000)
+                        .titleTextSize(25)
+                        .titleTextColor(R.color.md_white_1000)
+                        .descriptionTextSize(15)
+                        .descriptionTextColor(R.color.md_white_1000)
+                        .dimColor(R.color.md_black_1000)
+                        .drawShadow(true)
+                        .cancelable(false)
+                        .tintTarget(false)
+                        .transparentTarget(true)
+                        .targetRadius(30),
+                new TapTargetView.Listener(){
+                    @Override
+                    public void onTargetClick(TapTargetView view) {
+                        super.onTargetClick(view);
+                        appPreferences = SQLite.select().from(AppPreferences.class)
+                                .where(AppPreferences_Table.id.is(1)).querySingle();
+
+                        appPreferences.setIsVenta(1);
+
+                        appPreferences.update();
+                    }
+                });
+
+    }
 
     private void validarVistas() {
         int items = adaptador.getItemCount();
@@ -92,6 +134,8 @@ public class ListaVentas extends AppCompatActivity implements OnItemVentaClickLi
 
     @Override
     public void onItemClick(Ventas ventas) {
-
+        Intent intent = new Intent(this,DetalleVenta.class);
+        intent.putExtra(Ventas.ID, ventas.getIdFolio());
+        startActivity(intent);
     }
 }

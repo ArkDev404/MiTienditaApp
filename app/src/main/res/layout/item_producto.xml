@@ -13,6 +13,7 @@
         android:id="@+id/fotoProducto"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:padding="5dp"
         android:layout_marginStart="16dp"
         android:src="@drawable/bottle_tonic"
         app:layout_constraintStart_toStartOf="parent"

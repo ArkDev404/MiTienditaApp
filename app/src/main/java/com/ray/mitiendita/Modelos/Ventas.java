@@ -8,6 +8,8 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 @Table(database = AppDB.class)
 public class Ventas extends BaseModel {
 
+    public static final String TOTAL = "totalDeuda";
+    public static final String ID = "idFolio";
     @PrimaryKey
     private int idFolio;
     @Column

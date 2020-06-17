@@ -27,201 +27,227 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <LinearLayout
-        android:layout_height="wrap_content"
+    <ScrollView
         android:layout_width="match_parent"
-        android:padding="16dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Folio de Venta:"
-            style="@style/TextAppearance.MaterialComponents.Headline6"/>
-
-        <TextView
-            android:id="@+id/tv_folio"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="12"
-            android:layout_marginStart="10dp"
-            style="@style/TextAppearance.MaterialComponents.Headline6"/>
-
-
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:gravity="end">
-            <TextView
-                android:id="@+id/txtFecha"
+        android:layout_height="match_parent">
+            <LinearLayout
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="28/05/2020"
-                android:layout_marginStart="10dp"
-                android:gravity="end"
-                style="@style/TextAppearance.MaterialComponents.Headline6"/>
-        </LinearLayout>
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:orientation="vertical">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:hint="Cliente"
-            app:startIconDrawable="@drawable/ic_person"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
-
-            <AutoCompleteTextView
-                android:id="@+id/etCliente"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:focusableInTouchMode="false"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
-            android:text="Seleccione sus productos"
-            android:gravity="center"
-            style="@style/TextAppearance.MaterialComponents.Headline6"/>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Producto"
-            app:startIconDrawable="@drawable/ic_producto"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etNombreProducto"
+                android:orientation="vertical">
+                <LinearLayout
                     android:layout_height="wrap_content"
-                    android:layout_width="match_parent"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_width="match_parent"
+                    android:padding="16dp"
+                    android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Folio de Venta:"
+                        style="@style/TextAppearance.MaterialComponents.Headline6"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="60"
-                android:layout_marginEnd="10dp"
-                app:startIconDrawable="@drawable/ic_money"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPrecio"
+                    <TextView
+                        android:id="@+id/tv_folio"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="12"
+                        android:layout_marginStart="10dp"
+                        style="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+
+                    <LinearLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:gravity="end">
+                        <TextView
+                            android:id="@+id/txtFecha"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="28/05/2020"
+                            android:layout_marginStart="10dp"
+                            android:gravity="end"
+                            style="@style/TextAppearance.MaterialComponents.Headline6"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:baselineAligned="false"
+                        android:layout_gravity="center">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:hint="Cliente"
+                            android:layout_weight="85"
+                            app:startIconDrawable="@drawable/ic_person"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/etCliente"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textPersonName"
+                                android:focusableInTouchMode="false"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_nuevoCliente"
+                            app:icon="@drawable/ic_person_add"
+                            app:iconTint="@android:color/white"
+                            app:iconGravity="textStart"
+                            android:layout_marginStart="5dp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="15" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:text="Seleccione sus productos"
+                        android:gravity="center"
+                        style="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Producto"
+                        app:startIconDrawable="@drawable/ic_producto"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etNombreProducto"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:baselineAligned="false">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="60"
+                            android:layout_marginEnd="10dp"
+                            app:startIconDrawable="@drawable/ic_money"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etPrecio"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Precio"
+                                android:inputType="numberDecimal"
+                                android:nextFocusDown="@id/etExistencias"
+                                android:maxLength="12"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="40"
+                            app:startIconDrawable="@drawable/ic_producto"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etCantidad"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Cantidad"
+                                android:inputType="number"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_agregar_al_carrito"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:padding="8dp"
+                        android:textSize="16sp"
+                        android:text="Agregar"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                        android:textAllCaps="false"
+                        android:layout_gravity="end"
+                        app:icon="@drawable/ic_carrito_compra"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:background="@color/color_guideline"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerProductosVendidos"
+                    android:layout_height="150dp"
+                    android:layout_width="match_parent"
+                    android:padding="5dp"
+                    tools:listitem="@layout/item_lista_productos"/>
+
+                <View
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:background="@color/color_guideline"/>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Precio"
-                    android:inputType="numberDecimal"
-                    android:nextFocusDown="@id/etExistencias"
-                    android:maxLength="12"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:padding="16dp"
+                    android:orientation="horizontal">
 
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switch_pago"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:text="Pagada: "
+                        style="@style/TextAppearance.MaterialComponents.Headline6"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="40"
-                app:startIconDrawable="@drawable/ic_producto"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etCantidad"
-                    android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:gravity="end">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total"
+                            style="@style/TextAppearance.MaterialComponents.Headline6"/>
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_price"
+                            android:text="0.00"
+                            style="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_pagar"
                     android:layout_height="wrap_content"
-                    android:hint="Cantidad"
-                    android:inputType="number"/>
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_agregar_al_carrito"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:padding="8dp"
-            android:textSize="16sp"
-            android:text="Agregar"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            android:textAllCaps="false"
-            android:layout_gravity="end"
-            app:icon="@drawable/ic_carrito_compra"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
-
-    </LinearLayout>
-
-    <View
-        android:layout_height="1dp"
-        android:layout_width="match_parent"
-        android:background="@color/color_guideline"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerProductosVendidos"
-        android:layout_height="150dp"
-        android:layout_width="match_parent"
-        android:padding="5dp"
-        tools:listitem="@layout/item_lista_productos"/>
-
-    <View
-        android:layout_height="1dp"
-        android:layout_width="match_parent"
-        android:background="@color/color_guideline"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:orientation="horizontal">
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switch_pago"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="Pagada: "
-            style="@style/TextAppearance.MaterialComponents.Headline6"/>
-
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
-            android:gravity="end">
-
-                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Total"
-                    style="@style/TextAppearance.MaterialComponents.Headline6"/>
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tv_total"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_price"
-                    android:text="0.00"
-                    style="@style/TextAppearance.MaterialComponents.Headline6"/>
+                    android:layout_gravity="end"
+                    android:textColor="@android:color/white"
+                    android:text="Pagar"
+                    android:layout_margin="10dp"
+                    android:textAllCaps="false" />
 
-        </LinearLayout>
-
-    </LinearLayout>
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_pagar"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="end"
-        android:textColor="@android:color/white"
-        android:text="Pagar"
-        android:layout_margin="10dp"
-        android:textAllCaps="false" />
+            </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

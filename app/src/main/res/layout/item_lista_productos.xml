@@ -39,7 +39,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:drawableStart="@drawable/ic_price"
         android:hint="100.00"
         android:paddingEnd="16dp"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"

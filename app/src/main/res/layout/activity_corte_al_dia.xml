@@ -18,7 +18,7 @@
             android:layout_height="?attr/actionBarSize"
             app:title="@string/app_name"
             app:titleTextColor="@android:color/white"
-            app:subtitle="Crear Venta"
+            app:subtitle="Corte al Dia"
             app:subtitleTextColor="@color/md_white_1000">
 
         </androidx.appcompat.widget.Toolbar>

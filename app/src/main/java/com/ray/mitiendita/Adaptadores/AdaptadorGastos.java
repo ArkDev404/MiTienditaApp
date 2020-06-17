@@ -14,6 +14,7 @@ import com.ray.mitiendita.Listeners.OnItemGastoClickListener;
 import com.ray.mitiendita.Modelos.Gastos;
 import com.ray.mitiendita.R;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import butterknife.BindView;
@@ -25,6 +26,8 @@ public class AdaptadorGastos extends RecyclerView.Adapter<AdaptadorGastos.ViewHo
     private List<Gastos> gastos;
     private Context context;
     private OnItemGastoClickListener listener;
+
+    DecimalFormat format = new DecimalFormat("#,###.00");
 
     public AdaptadorGastos(List<Gastos> gastos, OnItemGastoClickListener listener) {
         this.gastos = gastos;
@@ -44,7 +47,7 @@ public class AdaptadorGastos extends RecyclerView.Adapter<AdaptadorGastos.ViewHo
         final Gastos gasto = gastos.get(position);
         holder.setListener(gasto,listener);
         holder.txtMotivo.setText(gasto.getMotivoGasto());
-        holder.txtMonto.setText(String.valueOf(gasto.getMonto()));
+        holder.txtMonto.setText(format.format(gasto.getMonto()));
         holder.txtFechaGasto.setText(gasto.getFechaGasto());
     }
 

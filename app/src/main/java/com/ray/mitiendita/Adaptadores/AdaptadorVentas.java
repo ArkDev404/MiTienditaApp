@@ -14,6 +14,7 @@ import com.ray.mitiendita.Listeners.OnItemVentaClickListener;
 import com.ray.mitiendita.Modelos.Ventas;
 import com.ray.mitiendita.R;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import butterknife.BindView;
@@ -24,6 +25,8 @@ public class AdaptadorVentas extends RecyclerView.Adapter<AdaptadorVentas.ViewHo
     private Context context;
     private OnItemVentaClickListener listener;
     private List<Ventas> venta;
+
+    DecimalFormat format = new DecimalFormat("#,###.00");
 
     public AdaptadorVentas(OnItemVentaClickListener listener, List<Ventas> venta) {
         this.listener = listener;
@@ -43,7 +46,7 @@ public class AdaptadorVentas extends RecyclerView.Adapter<AdaptadorVentas.ViewHo
         final Ventas ventas = venta.get(position);
         holder.setListener(ventas, listener);
         holder.txtNoVenta.setText("Venta No. " + ventas.getIdFolio());
-        holder.txtTotalVenta.setText(String.valueOf(ventas.getTotalVenta()));
+        holder.txtTotalVenta.setText(format.format(ventas.getTotalVenta()));
         holder.txtFechaGasto.setText(String.valueOf(ventas.getFechaVenta()));
 
     }

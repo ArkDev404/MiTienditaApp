@@ -34,13 +34,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Saldo Deudor"
+            android:text="Saldo Deudor $ "
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_deuda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_price"
             android:text="0.00"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
 
@@ -52,13 +51,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Abonos"
+                android:text="Abonos $ "
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_abonos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_price"
                 android:text="0.00"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
 
@@ -76,14 +74,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total"
+            android:text="Total $ "
             android:paddingTop="10dp"
             style="@style/TextAppearance.MaterialComponents.Headline6"/>
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_price"
             android:text="0.00"
             style="@style/TextAppearance.MaterialComponents.Headline6"/>
 
@@ -96,7 +93,6 @@
                 android:id="@+id/btn_abonar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_price"
                 android:text="abonar"
                 android:textColor="@android:color/white"/>
         </LinearLayout>

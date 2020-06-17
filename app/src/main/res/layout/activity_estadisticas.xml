@@ -18,7 +18,7 @@
             android:layout_height="?attr/actionBarSize"
             app:title="@string/app_name"
             app:titleTextColor="@android:color/white"
-            app:subtitle="Detalle del Cliente"
+            app:subtitle="Estadisticas Productos"
             app:subtitleTextColor="@color/md_white_1000">
 
         </androidx.appcompat.widget.Toolbar>
@@ -26,17 +26,149 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <com.google.android.material.textview.MaterialTextView
+    <LinearLayout
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        android:text="Productos vendidos segun categoria"
-        android:gravity="center"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+        android:orientation="vertical"
+        android:padding="16dp">
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Existencias de productos actual"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
 
-    <lecho.lib.hellocharts.view.PieChartView
-        android:id="@+id/pieChart"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="En la presente grafica se muestran los productos con menos existencias, se recomienda resurtirlos"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
+
+
+        <lecho.lib.hellocharts.view.PieChartView
+            android:id="@+id/pieChart"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            />
+
+
+        <LinearLayout
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical">
+
+            <View
+                android:layout_gravity="center"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="#FFBB33"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtProducto1"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:paddingStart="16dp"
+                android:hint="Producto"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical">
+
+            <View
+                android:layout_gravity="center"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="#FF4444"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtProducto2"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:paddingStart="16dp"
+                android:hint="Producto"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical">
+
+            <View
+                android:layout_gravity="center"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="#33B5E5"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtProducto3"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:paddingStart="16dp"
+                android:hint="Producto"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical">
+
+            <View
+                android:layout_gravity="center"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="#AA66CC"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtProducto4"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:paddingStart="16dp"
+                android:hint="Producto"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical">
+
+            <View
+                android:layout_gravity="center"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="#99CC00"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtProducto5"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:paddingStart="16dp"
+                android:hint="Producto"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 
 </LinearLayout>

@@ -9,6 +9,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 public class Cliente extends BaseModel {
 
     public static final String ID = "idCliente";
+    public static final String TOTAL = "totalDeuda";
 
     @PrimaryKey(autoincrement = true)
     private int idCliente;
@@ -69,5 +70,9 @@ public class Cliente extends BaseModel {
 
     public void setSaldo(float saldo) {
         Saldo = saldo;
+    }
+
+    public String getNombreCompleto() {
+        return Nombre+" "+Apellidos;
     }
 }

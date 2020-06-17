@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Vistas.DetalleGasto">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/app_name"
+            app:subtitle="Detalle Gasto"
+            app:titleTextColor="@android:color/white"
+            app:subtitleTextColor="@android:color/white">
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gasto No."
+            style="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+        <TextView
+            android:id="@+id/tv_folioGasto"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="12"
+            android:layout_marginStart="10dp"
+            style="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="end">
+            <TextView
+                android:id="@+id/txtFecha"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="28/05/2020"
+                android:layout_marginStart="10dp"
+                android:gravity="end"
+                style="@style/TextAppearance.MaterialComponents.Headline6"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Motivo del Gasto"
+            app:startIconDrawable="@drawable/ic_document"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etMotivo"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:enabled="false"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Monto"
+            app:startIconDrawable="@drawable/ic_money"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etMonto"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:enabled="false"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/fotoDocumento"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_photo_size_select_actual"/>
+    </LinearLayout>
+</LinearLayout>

@@ -3,6 +3,7 @@ package com.ray.mitiendita.Modelos;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.annotation.Unique;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 
@@ -13,7 +14,7 @@ public class Producto extends BaseModel {
     //Elementos de la Tabla Producto
     @PrimaryKey(autoincrement = true)
     private int idProducto;
-    @Column
+    @Column @Unique
     private String CodigoBarras;
     @Column
     private String NombreProducto;
@@ -43,6 +44,7 @@ public class Producto extends BaseModel {
         FotoProducto = fotoProducto;
     }
 
+
     public Producto(int idProducto, String codigoBarras, String nombreProducto, String descripcion,
                     float precio, int existencias, String fotoProducto) {
         this.idProducto = idProducto;
@@ -53,6 +55,8 @@ public class Producto extends BaseModel {
         Existencias = existencias;
         FotoProducto = fotoProducto;
     }
+
+
 
 
     // Metodos Setter y Getter

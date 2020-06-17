@@ -57,7 +57,8 @@
                     android:id="@+id/delete_img"
                     android:padding="5dp"
                     style="@style/ActivitiesTheme.ImageView"
-                    android:src="@drawable/ic_close"/>
+                    android:src="@drawable/ic_close"
+                    android:visibility="gone"/>
 
             </LinearLayout>
 

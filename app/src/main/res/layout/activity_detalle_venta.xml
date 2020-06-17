@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Vistas.DetalleVenta">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/app_name"
+            app:titleTextColor="@android:color/white"
+            app:subtitle="Detalle de Venta"
+            app:subtitleTextColor="@color/md_white_1000">
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Folio de Venta:"
+            style="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+        <TextView
+            android:id="@+id/tv_folio"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="12"
+            android:layout_marginStart="10dp"
+            style="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="end">
+            <TextView
+                android:id="@+id/txtFecha"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="28/05/2020"
+                android:layout_marginStart="10dp"
+                android:gravity="end"
+                style="@style/TextAppearance.MaterialComponents.Headline6"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Cliente"
+            app:startIconDrawable="@drawable/ic_person"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCliente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:focusableInTouchMode="false"
+                android:enabled="false"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Lista de Articulos"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
+
+    <View
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        android:background="@color/color_guideline"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerProductosVendidos"
+        android:layout_height="250dp"
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        tools:listitem="@layout/item_lista_productos"/>
+
+    <View
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        android:background="@color/color_guideline"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total"
+                style="@style/TextAppearance.MaterialComponents.Headline6"/>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_price"
+                android:text="0.00"
+                style="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

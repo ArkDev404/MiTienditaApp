@@ -10,6 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textview.MaterialTextView;
+import com.ray.mitiendita.Listeners.OnItemCategoriaClickListener;
 import com.ray.mitiendita.Modelos.Categorias;
 import com.ray.mitiendita.R;
 
@@ -22,10 +23,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class AdaptadorCategorias extends RecyclerView.Adapter<AdaptadorCategorias.ViewHolder> {
 
     private List<Categorias> categorias;
+    private OnItemCategoriaClickListener listener;
     private Context context;
 
-    public AdaptadorCategorias(List<Categorias> categorias) {
+    public AdaptadorCategorias(List<Categorias> categorias, OnItemCategoriaClickListener listener) {
         this.categorias = categorias;
+        this.listener = listener;
     }
 
     @NonNull
@@ -39,6 +42,7 @@ public class AdaptadorCategorias extends RecyclerView.Adapter<AdaptadorCategoria
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Categorias categoria = categorias.get(position);
+        holder.setListener(categoria,listener);
         holder.fotoCategoria.setImageResource(categoria.getFotoCategoria());
         holder.txtCategoria.setText(categoria.getNombreCategoria());
     }
@@ -67,6 +71,10 @@ public class AdaptadorCategorias extends RecyclerView.Adapter<AdaptadorCategoria
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+        }
+
+        void setListener (Categorias categorias, OnItemCategoriaClickListener listener){
+            containerCategoria.setOnClickListener(v -> listener.onItemClick(categorias));
         }
     }
 

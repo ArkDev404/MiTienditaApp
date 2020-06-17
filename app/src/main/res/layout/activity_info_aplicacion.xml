@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="@drawable/top_background"
+    tools:context=".Vistas.InfoAplicacion">
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Version 1.0.1"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_height="150dp"
+        android:layout_width="150dp"
+        android:padding="16dp"
+        android:layout_gravity="center"
+        android:src="@drawable/store"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="© 2020 - Todos los derechos reservados"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Creado por: ARKSoft"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="16dp"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+</LinearLayout>

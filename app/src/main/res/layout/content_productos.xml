@@ -44,12 +44,13 @@
         android:visibility="gone">
 
         <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:padding="10dp"
             android:layout_margin="15dp"
             android:adjustViewBounds="true"
             android:contentDescription="Sin productos"
-            android:src="@drawable/bottle_tonic"/>
+            android:src="@drawable/ic_others"/>
 
         <TextView
             android:layout_width="match_parent"

@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Vistas.Dashboard"
+    android:fillViewport="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:paddingBottom="60dp"
     tools:showIn="@layout/content_dashboard">
 
     <LinearLayout
         android:id="@+id/layoutPanel"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listConfig"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -46,6 +47,7 @@
             android:layout_height="wrap_content"
             android:columnOrderPreserved="true"
             android:alignmentMode="alignMargins"
+            android:rowOrderPreserved="false"
             android:rowCount="3"
             android:columnCount="2"
             android:visibility="visible">
@@ -242,4 +244,4 @@
     </LinearLayout>
 
 
-</LinearLayout>
+</ScrollView>

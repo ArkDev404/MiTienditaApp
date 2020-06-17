@@ -6,6 +6,9 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 
     <application
         android:name=".MyApplication"
@@ -16,7 +19,11 @@
         android:supportsRtl="true"
         android:theme="@style/MyTheme.DayNight"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Vistas.CorteAlDia"></activity>
+        <activity android:name=".Vistas.DetalleGasto"/>
+        <activity android:name=".Vistas.DetalleVenta" />
+        <activity android:name=".Vistas.CambiarDatosCuenta" />
+        <activity android:name=".Vistas.InfoAplicacion" />
+        <activity android:name=".Vistas.CorteAlDia" />
         <activity
             android:name=".Vistas.AgregarGasto"
             android:label="@string/title_activity_agregar_gasto"
@@ -72,6 +79,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider_paths"/>
+        </provider>
+
     </application>
 
 </manifest>

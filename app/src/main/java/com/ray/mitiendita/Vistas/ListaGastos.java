@@ -9,9 +9,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.ray.mitiendita.Adaptadores.AdaptadorGastos;
 import com.ray.mitiendita.Listeners.OnItemGastoClickListener;
+import com.ray.mitiendita.Modelos.AppPreferences;
+import com.ray.mitiendita.Modelos.AppPreferences_Table;
 import com.ray.mitiendita.Modelos.Gastos;
 import com.ray.mitiendita.R;
 
@@ -30,12 +34,20 @@ public class ListaGastos extends AppCompatActivity implements OnItemGastoClickLi
     LinearLayout vistaVacia;
 
     private AdaptadorGastos adaptador;
+    private AppPreferences appPreferences = new AppPreferences();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_gastos);
         ButterKnife.bind(this);
+
+        List<AppPreferences> appPreferencesList =
+                SQLite.select().from(AppPreferences.class).queryList();
+
+        if (appPreferencesList.get(0).getIsGasto()==0){
+            crearShowCase();
+        }
 
         configAdaptador();
         configRecyclerView();
@@ -46,6 +58,40 @@ public class ListaGastos extends AppCompatActivity implements OnItemGastoClickLi
         super.onResume();
         adaptador.setList(getGastos());
         validarVistas();
+    }
+
+
+    private void crearShowCase() {
+
+        TapTargetView.showFor(this, TapTarget.forView(findViewById(R.id.fab),
+                "Registro de Gastos","Desde este boton puedes almacenar tus gastos del dia a dia" +
+                        " (Pago proveedores, servicios, etc.)")
+                        .outerCircleColor(R.color.color_Primary)
+                        .outerCircleAlpha(0.8f)
+                        .targetCircleColor(R.color.md_white_1000)
+                        .titleTextSize(25)
+                        .titleTextColor(R.color.md_white_1000)
+                        .descriptionTextSize(15)
+                        .descriptionTextColor(R.color.md_white_1000)
+                        .dimColor(R.color.md_black_1000)
+                        .drawShadow(true)
+                        .cancelable(false)
+                        .tintTarget(false)
+                        .transparentTarget(true)
+                        .targetRadius(30),
+                new TapTargetView.Listener(){
+                    @Override
+                    public void onTargetClick(TapTargetView view) {
+                        super.onTargetClick(view);
+                        appPreferences = SQLite.select().from(AppPreferences.class)
+                                .where(AppPreferences_Table.id.is(1)).querySingle();
+
+                        appPreferences.setIsGasto(1);
+
+                        appPreferences.update();
+                    }
+                });
+
     }
 
     private List<Gastos> getGastos() {
@@ -77,7 +123,9 @@ public class ListaGastos extends AppCompatActivity implements OnItemGastoClickLi
 
     @Override
     public void onItemClick(Gastos gastos) {
-
+        Intent intent = new Intent(this, DetalleGasto.class);
+        intent.putExtra(Gastos.ID,gastos.getIdGasto());
+        startActivity(intent);
     }
 
     @OnClick(R.id.fab)

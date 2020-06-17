@@ -37,7 +37,7 @@
         android:id="@+id/txtSaldo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_deuda"
+        android:drawableStart="@drawable/ic_precio"
         android:gravity="center"
         android:hint="Saldo"
         android:textAppearance="@style/itemLarge"

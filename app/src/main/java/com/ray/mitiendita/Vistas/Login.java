@@ -10,6 +10,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.ray.mitiendita.Modelos.Usuarios;
+import com.ray.mitiendita.Modelos.Usuarios_Table;
 import com.ray.mitiendita.R;
 
 import java.util.List;
@@ -29,6 +30,8 @@ public class Login extends AppCompatActivity {
     @BindView(R.id.textError)
     TextView textError;
 
+    private Usuarios usuarios;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +43,8 @@ public class Login extends AppCompatActivity {
     @OnClick(R.id.btnAcceder)
     public void onViewClickedLogin() {
 
-        String usuario = User.getText().toString();
-        String contraseña = Pass.getText().toString();
+        String usuario = User.getText().toString().trim();
+        String contraseña = Pass.getText().toString().trim();
 
         if (usuario.isEmpty()) {
             textError.setText("Debe agregar el usuario");
@@ -61,18 +64,24 @@ public class Login extends AppCompatActivity {
     }
 
     private void Ingreso(String NombreUsuario, String Password){
-        List<Usuarios> listaUsuarios =
-                SQLite.select().from(Usuarios.class).queryList();
+        usuarios = SQLite
+                .select()
+                .from(Usuarios.class)
+                .where(Usuarios_Table.id_Usuario.is(1))
+                .querySingle();
 
-        for (int i = 0; i < listaUsuarios.size(); i++) {
-            if (NombreUsuario.equals(listaUsuarios.get(i).getNombreUsuario())
-                    && Password.equals(listaUsuarios.get(i).getContraseña())) {
+            if (usuarios.getNombreUsuario().equals(NombreUsuario)
+                    && usuarios.getContraseña().equals(Password) ) {
+
+                usuarios.setActivo(1);
+                usuarios.update();
+
                 Intent intent = new Intent(this, OnBoardingScreen.class);
                 startActivity(intent);
+                finish();
             } else {
                 textError.setText("Datos incorrectos");
             }
-        }
     }
-
 }
+

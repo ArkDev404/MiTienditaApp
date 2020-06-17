@@ -3,7 +3,7 @@
     android:id="@+id/containerCategoria"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="80dp"
+    android:layout_height="88dp"
     android:paddingTop="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 

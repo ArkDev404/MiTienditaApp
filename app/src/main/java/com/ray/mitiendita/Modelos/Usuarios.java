@@ -15,20 +15,12 @@ public class Usuarios extends BaseModel {
     private String NombreUsuario;
     @Column
     private String Contraseña;
+    @Column
+    private int activo;
 
     public Usuarios() {
     }
 
-    public Usuarios(String nombreUsuario, String contraseña) {
-        NombreUsuario = nombreUsuario;
-        Contraseña = contraseña;
-    }
-
-    public Usuarios(int id_Usuario, String nombreUsuario, String contraseña) {
-        this.id_Usuario = id_Usuario;
-        NombreUsuario = nombreUsuario;
-        Contraseña = contraseña;
-    }
 
     public int getId_Usuario() {
         return id_Usuario;
@@ -52,5 +44,13 @@ public class Usuarios extends BaseModel {
 
     public void setContraseña(String contraseña) {
         Contraseña = contraseña;
+    }
+
+    public int getActivo() {
+        return activo;
+    }
+
+    public void setActivo(int activo) {
+        this.activo = activo;
     }
 }

@@ -4,18 +4,22 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textview.MaterialTextView;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.ray.mitiendita.Modelos.Cliente;
 import com.ray.mitiendita.Modelos.Cliente_Table;
 import com.ray.mitiendita.R;
+
+import java.text.DecimalFormat;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,7 +35,12 @@ public class DetalleCliente extends AppCompatActivity {
     AutoCompleteTextView etSexo;
     @BindView(R.id.tvSaldo)
     MaterialTextView tvSaldo;
+    @BindView(R.id.btn_detalleS)
+    MaterialButton btnDetalleS;
+
     private Cliente cliente;
+
+    DecimalFormat format = new DecimalFormat("#,###.00");
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -40,11 +49,12 @@ public class DetalleCliente extends AppCompatActivity {
         setContentView(R.layout.activity_detalle_cliente);
         ButterKnife.bind(this);
         cargarCombobox();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         recibirDatoCliente(getIntent());
-        etSexo.setOnTouchListener((v, event) -> {
-            etSexo.setText("");
-            return false;
-        });
     }
 
     private void cargarCombobox() {
@@ -57,11 +67,13 @@ public class DetalleCliente extends AppCompatActivity {
     private void recibirDatoCliente(Intent intent) {
         getCliente(intent.getIntExtra(Cliente.ID, 0));
 
-        int id = cliente.getIdCliente();
         etNombreCliente.setText(cliente.getNombre());
         etApellidosCliente.setText(cliente.getApellidos());
         etSexo.setText(cliente.getSexo());
-        tvSaldo.setText(String.valueOf(cliente.getSaldo()));
+        tvSaldo.setText(format.format(cliente.getSaldo()));
+        if (cliente.getSaldo()==0.0F){
+            btnDetalleS.setVisibility(View.INVISIBLE);
+        }
 
     }
 
@@ -115,7 +127,7 @@ public class DetalleCliente extends AppCompatActivity {
     @OnClick(R.id.btn_detalleS)
     public void detalleSaldo() {
         Intent intent = new Intent(this, DetalleSaldoCliente.class);
-        intent.putExtra(Cliente.ID,cliente.getIdCliente());
+        intent.putExtra(Cliente.ID, cliente.getIdCliente());
         startActivity(intent);
     }
 }

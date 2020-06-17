@@ -1,7 +1,10 @@
 package com.ray.mitiendita.Vistas;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
@@ -13,11 +16,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.ray.mitiendita.Adaptadores.ConfigAdaptador;
+import com.ray.mitiendita.Listeners.OnItemConfigClickListener;
+import com.ray.mitiendita.Modelos.AppPreferences;
+import com.ray.mitiendita.Modelos.AppPreferences_Table;
 import com.ray.mitiendita.Modelos.ConfigItems;
+import com.ray.mitiendita.Modelos.Usuarios;
+import com.ray.mitiendita.Modelos.Usuarios_Table;
 import com.ray.mitiendita.R;
 
 import java.util.ArrayList;
@@ -27,7 +40,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class Dashboard extends AppCompatActivity {
+public class Dashboard extends AppCompatActivity implements OnItemConfigClickListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -36,34 +49,44 @@ public class Dashboard extends AppCompatActivity {
     @BindView(R.id.layoutPanel)
     LinearLayout layoutPanel;
     @BindView(R.id.listConfig)
-    ListView listConfig;
+    RecyclerView listConfig;
     @BindView(R.id.Navigator)
     BottomNavigationView Navigator;
     @BindView(R.id.relativeLayout)
     RelativeLayout relativeLayout;
     @BindView(R.id.gridLayout)
     GridLayout gridLayout;
-
-    ArrayList<ConfigItems> configItems;
     @BindView(R.id.switch_nightMode)
     SwitchMaterial switchNightMode;
+
+    private ConfigAdaptador adaptador;
+    private Usuarios usuarios = new Usuarios();
+    private AppPreferences appPreferences = new AppPreferences();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_dashboard);
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
 
-//        habilitarModoOscuro();
+        configAdaptador();
+        configRecyclerView();
+
         switchNightMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            appPreferences = SQLite.select().from(AppPreferences.class)
+                    .where(AppPreferences_Table.id.is(1)).querySingle();
             if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                Toast.makeText(getApplicationContext(), "Modo Oscuro Activado", Toast.LENGTH_SHORT).show();
+                appPreferences.setIsDarkMode(1);
+                appPreferences.update();
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                Toast.makeText(getApplicationContext(), "Modo Oscuro Desactivado", Toast.LENGTH_SHORT).show();
+                appPreferences.setIsDarkMode(0);
+                appPreferences.update();
             }
         });
 
@@ -94,41 +117,31 @@ public class Dashboard extends AppCompatActivity {
             return true;
         });
 
+
         agregarConfiguraciones();
 
-        listConfig.setOnItemClickListener((parent, view, position, id) -> {
-            //Provisional
-            if (position == 3) {
-                Intent intent = new Intent(this, Login.class);
-                startActivity(intent);
-            }
-        });
+    }
 
-       /* new MaterialShowcaseView.Builder(this)
-                .setTarget(cardProductos)
-                .setDismissText("Cerrar")
-                .setContentText("Selecciona una de estas opciones para comenzar a trabajar")
-                .setContentTextColor(getColor(R.color.md_white_1000))
-                .withCircleShape()
-                .show(); */
+
+    private void configRecyclerView() {
+        listConfig.setLayoutManager(new LinearLayoutManager(this));
+        listConfig.setAdapter(adaptador);
+    }
+
+    private void configAdaptador() {
+        adaptador = new ConfigAdaptador(new ArrayList<>(),this);
     }
 
     private void agregarConfiguraciones() {
 
-        configItems = new ArrayList<ConfigItems>();
+        int[] logos = {R.drawable.ic_settings,R.drawable.ic_info_blue_24dp, R.drawable.logout};
+        String[] titulos = {"Cuenta", "Info de la Aplicación","Cerrar Sesión"};
+        String[] descripcion = {"Cambio de Contraseña","Versión, Datos de Desarrollo","Salir de la App"};
 
-        configItems.add(new ConfigItems(1, "Negocio", "Ajustes de tu negocio",
-                R.drawable.negocio));
-        configItems.add(new ConfigItems(2, "Cuenta", "Datos de tu cuenta, contraseñas",
-                R.drawable.ic_settings));
-        configItems.add(new ConfigItems(3, "Info de la aplicación", "Datos del Desarrollador",
-                R.drawable.ic_info_blue_24dp));
-        configItems.add(new ConfigItems(3, "Cerrar Sesión", "Cierra sesión para mayor seguridad",
-                R.drawable.logout));
-
-        ConfigAdaptador configAdaptador = new ConfigAdaptador(getApplicationContext(), configItems);
-
-        listConfig.setAdapter(configAdaptador);
+        for (int i = 0; i < 3 ; i++) {
+            ConfigItems configItems = new ConfigItems(i,titulos[i],descripcion[i],logos[i]);
+            adaptador.agregar(configItems);
+        }
     }
 
 
@@ -166,5 +179,44 @@ public class Dashboard extends AppCompatActivity {
     public void onViewClicked() {
         Intent intent = new Intent(this, CorteAlDia.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void OnItemClick(ConfigItems configItems) {
+
+        if (configItems.getId() == 0){
+            Intent intent = new Intent(this, CambiarDatosCuenta.class);
+            startActivity(intent);
+        }
+
+        if (configItems.getId() == 1) {
+            Intent intent = new Intent(this,InfoAplicacion.class);
+            startActivity(intent);
+        }
+        //Provisional - Cerrar Sesion
+        if (configItems.getId() == 2) {
+            usuarios = SQLite
+                    .select()
+                    .from(Usuarios.class)
+                    .where(Usuarios_Table.id_Usuario.is(1))
+                    .querySingle();
+
+            usuarios.setActivo(0);
+
+            usuarios.update();
+
+            Intent intent = new Intent(this, Login.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (listConfig.getVisibility()==View.VISIBLE){
+
+        } else if (gridLayout.getVisibility()==View.VISIBLE){
+            finish();
+        }
     }
 }
